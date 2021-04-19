@@ -1,11 +1,7 @@
 const mongoose = require("mongoose");
 
-const orderSchema = new mongoose.Schema({
+const orderSchema = mongoose.Schema({
   shippingInfo: {
-    address: {
-      type: String,
-      required: true,
-    },
     address: {
       type: String,
       required: true,
@@ -14,7 +10,7 @@ const orderSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-    phoneNumber: {
+    phoneNo: {
       type: String,
       required: true,
     },
@@ -65,6 +61,10 @@ const orderSchema = new mongoose.Schema({
       type: String,
     },
   },
+  paidAt: {
+    type: Date,
+  },
+
   itemsPrice: {
     type: Number,
     required: true,
@@ -79,6 +79,23 @@ const orderSchema = new mongoose.Schema({
     type: Number,
     required: true,
     default: 0.0,
+  },
+  totalPrice: {
+    type: Number,
+    required: true,
+    default: 0.0,
+  },
+  orderStatus: {
+    type: String,
+    required: true,
+    default: "Processing",
+  },
+  deliveredAt: {
+    type: Date,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
 });
 
