@@ -1,5 +1,6 @@
 # dependencies
 node_modules
+ShopIT.code-workspace
 
 # misc
 /backend/config/config.env
