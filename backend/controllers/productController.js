@@ -1,6 +1,6 @@
 const Product = require("../models/product");
-const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
+const ErrorHandler = require("../utils/errorHandler");
 const APIFeatures = require("../utils/apiFeatures");
 
 // Create new product
@@ -23,6 +23,7 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
     .pagination(resPerPage);
 
   const products = await apiFeatures.query;
+
   res.status(200).json({
     success: true,
     count: products.length,
