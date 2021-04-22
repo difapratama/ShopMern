@@ -10,7 +10,7 @@ import AlertTemplate from "react-alert-template-basic";
 
 const options = {
   position: positions.BOTTOM_CENTER,
-  timeout: 10000,
+  timeout: 5000,
   transition: transitions.SCALE,
 };
 
