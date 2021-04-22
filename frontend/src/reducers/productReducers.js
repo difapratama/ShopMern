@@ -4,7 +4,7 @@ import {
   ALL_PRODUCTS_SUCCESS,
   ALL_PRODUCTS_FAIL,
   PRODUCT_DETAILS_REQUEST,
-  PRODUCT_DETAILS_SUCCCESS,
+  PRODUCT_DETAILS_SUCCESS,
   PRODUCT_DETAILS_FAIL,
   CLEAR_ERRORS,
 } from "../constants/productConstans";
@@ -44,7 +44,7 @@ export const productDetailsReducer = (state = { product: {} }, action) => {
         ...state,
         loading: true,
       };
-    case PRODUCT_DETAILS_SUCCCESS:
+    case PRODUCT_DETAILS_SUCCESS:
       return {
         loading: false,
         product: action.payload,
