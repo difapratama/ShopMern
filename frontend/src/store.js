@@ -8,9 +8,12 @@ import {
   productDetailsReducer,
 } from "./reducers/productReducers";
 
+import { authReducer } from "./reducers/userReducers";
+
 const reducer = combineReducers({
   products: productReducer,
   productDetails: productDetailsReducer,
+  auth: authReducer,
 });
 
 let initialState = {};
