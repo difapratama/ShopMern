@@ -3,11 +3,18 @@ const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
 const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail");
+
 const crypto = require("crypto");
-const { send } = require("process");
+const cloudinary = require("cloudinary");
 
 // Register a user => /api/v1/register
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
+  const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+    folder: "avatars",
+    width: 150,
+    crop: "scale",
+  });
+
   const { name, email, password } = req.body;
 
   const user = await User.create({
@@ -15,10 +22,8 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     email,
     password,
     avatar: {
-      public_id:
-        "avatar/37258870_1789181447832912_2827960828811018240_n_vvaf5c",
-      url:
-        "https://res.cloudinary.com/octavarium/image/upload/v1618476247/avatar/37258870_1789181447832912_2827960828811018240_n_vvaf5c.jpg",
+      public_id: result.public_id,
+      url: result.secure_url,
     },
   });
 
