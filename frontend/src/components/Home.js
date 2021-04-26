@@ -9,8 +9,8 @@ import Product from "./product/Product";
 import Loader from "./layout/Loader";
 
 import { useDispatch, useSelector } from "react-redux";
-import { useAlert } from "react-alert";
 import { getProducts } from "../actions/productActions";
+import { useAlert } from "react-alert";
 
 const { createSliderWithTooltip } = Slider;
 const Range = createSliderWithTooltip(Slider.Range);
@@ -51,10 +51,10 @@ const Home = ({ match }) => {
   const keyword = match.params.keyword;
 
   useEffect(() => {
+    dispatch(getProducts(keyword, currentPage, price, category, rating));
     if (error) {
       return alert.error(error);
     }
-    dispatch(getProducts(keyword, currentPage, price, category, rating));
   }, [dispatch, alert, error, keyword, currentPage, price, category, rating]);
 
   function setCurrentPageNo(pageNumber) {
