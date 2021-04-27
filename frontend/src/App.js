@@ -2,8 +2,6 @@ import { useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 
-import { useAlert } from "react-alert";
-
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 
@@ -13,6 +11,8 @@ import ProductDetails from "./components/product/ProductDetails";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import Profile from "./components/user/Profile";
+import UpdateProfile from "./components/user/UpdateProfile";
+import UpdatePassword from "./components/user/UpdatePassword";
 
 import ProtectedRoute from "./components/route/ProtectedRoute";
 import { loadUser } from "./actions/userActions";
@@ -35,6 +35,12 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <ProtectedRoute path="/me" component={Profile} exact />
+          <ProtectedRoute path="/me/update" component={UpdateProfile} exact />
+          <ProtectedRoute
+            path="/password/update"
+            component={UpdatePassword}
+            exact
+          />
         </div>
         <Footer />
       </div>
