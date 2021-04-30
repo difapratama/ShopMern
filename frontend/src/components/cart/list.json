@@ -1,0 +1,50 @@
+{
+    "continents": {
+      "AF": "Africa",
+      "AN": "Antarctica",
+      "AS": "Asia",
+      "EU": "Europe",
+      "NA": "North America",
+      "OC": "Oceania",
+      "SA": "South America"
+    },
+    "countries": {
+      "AE": {
+        "name": "United Arab Emirates",
+        "native": "دولة الإمارات العربية المتحدة",
+        "phone": "971",
+        "continent": "AS",
+        "capital": "Abu Dhabi",
+        "currency": "AED",
+        "languages": [
+          "ar"
+        ],
+        "emoji": "🇦🇪",
+        "emojiU": "U+1F1E6 U+1F1EA"
+      },
+      "UA": {
+        "name": "Ukraine",
+        "native": "Україна",
+        "phone": "380",
+        "continent": "EU",
+        "capital": "Kyiv",
+        "currency": "UAH",
+        "languages": [
+          "uk"
+        ],
+        "emoji": "🇺🇦",
+        "emojiU": "U+1F1FA U+1F1E6"
+      }
+    },
+    "languages": {
+      "ar": {
+        "name": "Arabic",
+        "native": "العربية",
+        "rtl": 1
+      },
+      "uk": {
+        "name": "Ukrainian",
+        "native": "Українська"
+      }
+    }
+  }

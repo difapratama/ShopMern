@@ -9,6 +9,8 @@ import Home from "./components/Home";
 import ProductDetails from "./components/product/ProductDetails";
 
 import Cart from "./components/cart/Cart";
+import Shipping from "./components/cart/Shipping";
+import ConfirmOrder from "./components/cart/ConfirmOrder";
 
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
@@ -37,6 +39,8 @@ function App() {
           <Route path="/product/:id" component={ProductDetails} exact />
 
           <Route path="/cart" component={Cart} exact />
+          <ProtectedRoute path="/shipping" component={Shipping} />
+          <ProtectedRoute path="/order/confirm" component={ConfirmOrder} />
 
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />

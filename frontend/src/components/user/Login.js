@@ -8,7 +8,7 @@ import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { login, clearErrors } from "../../actions/userActions";
 
-export const Login = ({ history }) => {
+export const Login = ({ history, location }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,16 +19,18 @@ export const Login = ({ history }) => {
     (state) => state.auth
   );
 
+  const redirect = location.search ? location.search.split("=")[1] : "/";
+
   useEffect(() => {
     if (isAuthenticated) {
-      history.push("/");
+      history.push(redirect);
     }
 
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
-  }, [dispatch, alert, isAuthenticated, error, history]);
+  }, [dispatch, alert, isAuthenticated, error, history, redirect]);
 
   const submitHandler = (e) => {
     e.preventDefault();
