@@ -55,7 +55,7 @@ const ConfirmOrder = ({ history }) => {
           {cartItems.map((item, index) => (
             <Fragment key={index}>
               <hr />
-              <div className="cart-item my-1" key={item.uniqueId}>
+              <div className="cart-item my-1">
                 <div className="row">
                   <div className="col-4 col-lg-2">
                     <img src={item.image} alt="Laptop" height="45" width="65" />
@@ -70,7 +70,7 @@ const ConfirmOrder = ({ history }) => {
                   <div className="col-4 col-lg-4 mt-4 mt-lg-0">
                     <p>
                       {item.quantity} x ${item.price} =
-                      <b>${item.quantity * item.price}</b>
+                      <b>${item.quantity * item.price.toFixed(2)}</b>
                     </p>
                   </div>
                 </div>
