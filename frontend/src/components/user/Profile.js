@@ -14,47 +14,79 @@ const Profile = () => {
       ) : (
         <Fragment>
           <Metadata title={"Your Profile"} />
-          <h2 className="mt-5 ml-5">My Profile</h2>
-          <div className="row justify-content-around mt-5 user-info">
-            <div className="col-12 col-md-3">
-              <figure className="avatar avatar-profile">
-                <img
-                  className="rounded-circle img-fluid"
-                  src={user.avatar.url}
-                  alt={user.name}
-                />
-              </figure>
-              <Link
-                to="/me/update"
-                id="edit_profile"
-                className="btn btn-primary btn-block my-5"
-              >
-                Edit Profile
-              </Link>
-            </div>
-
-            <div className="col-12 col-md-5">
-              <h4>Full Name</h4>
-              <p>{user.name}</p>
-
-              <h4>Email Address</h4>
-              <p>{user.email}</p>
-
-              <h4>Joined On</h4>
-              <p>{String(user.createdAt).substring(0, 10)}</p>
-
-              {user.role !== "admin" && (
-                <Link to="/orders/me" className="btn btn-danger btn-block mt-5">
-                  My Orders
-                </Link>
-              )}
-
-              <Link
-                to="/password/update"
-                className="btn btn-primary btn-block mt-3"
-              >
-                Change Password
-              </Link>
+          <div class="main-body">
+            <div class="row gutters-sm">
+              <div class="col-md-4 mb-3">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex flex-column align-items-center text-center">
+                      <img
+                        src={user.avatar.url}
+                        alt={user.name}
+                        class="rounded-circle img-fluid"
+                        width="150"
+                      />
+                      <div class="mt-3">
+                        <Link
+                          to="/me/update"
+                          id="edit_profile"
+                          className="btn btn-primary btn-block my-5"
+                        >
+                          Edit Profile
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="card mb-0">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Full Name :</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">{user.name}</div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Email : </h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">{user.email}</div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <h6 class="mb-0">Joined On : </h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                        {String(user.createdAt).substring(0, 10)}
+                      </div>
+                    </div>
+                    <div class="row mt-5">
+                      <div className="col-md-6">
+                        {user.role !== "admin" && (
+                          <Link
+                            to="/orders/me"
+                            className="btn btn-danger btn-block"
+                          >
+                            My Orders
+                          </Link>
+                        )}
+                      </div>
+                      <div className="col-md-6">
+                        <Link
+                          to="/password/update"
+                          className="btn btn-primary btn-block"
+                        >
+                          Change Password
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </Fragment>

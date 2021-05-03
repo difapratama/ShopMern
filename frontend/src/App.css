@@ -8,6 +8,11 @@ body {
   overflow-x: hidden;
 }
 
+.main-body {
+  padding: 15px;
+  margin-top: 5px;
+}
+
 /* Scroll Bar */
 
 ::-webkit-scrollbar-track {
@@ -72,7 +77,20 @@ nav {
 }
 
 .card {
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+}
+
+.card {
   height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 0 solid rgba(0,0,0,.125);
+  border-radius: .25rem;
 }
 
 .card-title a {
@@ -86,6 +104,12 @@ nav {
 
 .card-body {
   padding-left: 0;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1rem;
 }
 
 .card-text {
