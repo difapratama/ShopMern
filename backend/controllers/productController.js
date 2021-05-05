@@ -98,8 +98,7 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
 
   const product = await Product.findById(productId);
   const isReviewed = product.reviews.find(
-    (r) => r.user.toString() === req.user._id.toString(),
-    await console.log(isReviewed)
+    (r) => r.user.toString() === req.user._id.toString()
   );
 
   if (isReviewed) {
@@ -121,7 +120,7 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
   await product.save({ validateBeforeSave: false });
 
   res.status(200).json({
-    sucess: true,
+    success: true,
   });
 });
 
