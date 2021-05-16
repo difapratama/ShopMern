@@ -2,9 +2,29 @@ const Product = require("../models/product");
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
 const ErrorHandler = require("../utils/errorHandler");
 const APIFeatures = require("../utils/apiFeatures");
+const cloudinary = require("cloudinary");
 
 // Create new product
 exports.newProduct = catchAsyncErrors(async (req, res, next) => {
+  // Handle multiples images upload
+  let images = [];
+  if (typeof req.body.images === "string") {
+    images.push(req.body.images);
+  } else {
+    images = req.body.images;
+  }
+
+  let imagesLinks = [];
+  for (let index = 0; index < images.length; index++) {
+    const result = await cloudinary.v2.uploader.upload(images[index], {
+      folder: "products",
+    });
+    imagesLinks.push({
+      public_id: result.public_id,
+      url: result.secure_url,
+    });
+  }
+  req.body.images = imagesLinks;
   req.body.user = req.user.id;
   const product = await Product.create(req.body);
   res.status(201).json({
@@ -33,6 +53,16 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
     productsCount,
     resPerPage,
     filteredProductsCount,
+    products,
+  });
+});
+
+// Get all products by ADMIN => /api/v1/admin/products
+exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
+  const products = await Product.find();
+
+  res.status(200).json({
+    success: true,
     products,
   });
 });
@@ -70,12 +100,19 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-// Delete a product => /api/v1/admin/product/:id
+// Delete product => /api/v1/admin/product/:id
 exports.deleteProduct = catchAsyncErrors(async (req, res) => {
   const product = await Product.findById(req.params.id);
 
   if (!product) {
     return next(new ErrorHandler("Product Not Found", 404));
+  }
+
+  // Delete images associated with the product
+  for (let index = 0; index < product.images.length; index++) {
+    const result = await cloudinary.v2.uploader.destroy(
+      product.images[index].public_id
+    );
   }
 
   await product.remove();

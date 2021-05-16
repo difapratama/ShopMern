@@ -46,7 +46,6 @@ const Register = ({ history }) => {
     formData.set("email", email);
     formData.set("password", password);
     formData.set("avatar", avatar);
-
     dispatch(register(formData));
   };
 

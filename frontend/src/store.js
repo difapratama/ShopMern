@@ -4,6 +4,8 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import {
+  productsReducer,
+  newProductReducer,
   productReducer,
   productDetailsReducer,
   newReviewReducer,
@@ -23,8 +25,10 @@ import {
 } from "./reducers/orderReducers";
 
 const reducer = combineReducers({
-  products: productReducer,
+  products: productsReducer,
   productDetails: productDetailsReducer,
+  newProduct: newProductReducer,
+  product: productReducer,
   auth: authReducer,
   user: userReducer,
   forgotPassword: forgotPasswordReducer,
