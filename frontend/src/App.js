@@ -33,6 +33,11 @@ import Dashboard from "./components/admin/Dashboard";
 import ProductsList from "./components/admin/ProductsList";
 import NewProduct from "./components/admin/NewProduct";
 import UpdateProduct from "./components/admin/UpdateProduct";
+import OrdersList from "./components/admin/OrdersList";
+import ProcessOrder from "./components/admin/ProcessOrder";
+import UsersList from "./components/admin/UsersList";
+import UpdateUser from "./components/admin/UpdateUser";
+import ProductReviews from "./components/admin/ProductReviews";
 
 import ProtectedRoute from "./components/route/ProtectedRoute";
 import { loadUser } from "./actions/userActions";
@@ -57,7 +62,7 @@ function App() {
     getStripeApiKey();
   }, []);
 
-  const { user, loading } = useSelector((state) => state.auth);
+  const { user, isAuthenticated, loading } = useSelector((state) => state.auth);
 
   return (
     <Router>
@@ -116,7 +121,38 @@ function App() {
           component={UpdateProduct}
           exact
         />
-        {!loading && user.role !== "admin" && <Footer />}
+        <ProtectedRoute
+          path="/admin/orders"
+          isAdmin={true}
+          component={OrdersList}
+          exact
+        />
+        <ProtectedRoute
+          path="/admin/order/:id"
+          isAdmin={true}
+          component={ProcessOrder}
+          exact
+        />
+        <ProtectedRoute
+          path="/admin/users"
+          isAdmin={true}
+          component={UsersList}
+          exact
+        />
+        <ProtectedRoute
+          path="/admin/user/:id"
+          isAdmin={true}
+          component={UpdateUser}
+          exact
+        />
+        <ProtectedRoute
+          path="/admin/reviews"
+          isAdmin={true}
+          component={ProductReviews}
+          exact
+        />
+
+        {!loading && (!isAuthenticated || user.role !== "admin") && <Footer />}
       </div>
     </Router>
   );
