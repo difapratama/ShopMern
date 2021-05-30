@@ -2,7 +2,6 @@ import React, { Fragment, useState, useEffect } from "react";
 import { MDBDataTableV5 } from "mdbreact";
 
 import Metadata from "../layout/MetaData";
-import Loader from "../layout/Loader";
 import Sidebar from "./Sidebar";
 
 import { useAlert } from "react-alert";
@@ -20,9 +19,7 @@ const ProductReviews = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
 
-  const { loading, error, reviews } = useSelector(
-    (state) => state.productReviews
-  );
+  const { error, reviews } = useSelector((state) => state.productReviews);
   const { isDeleted } = useSelector((state) => state.review);
 
   useEffect(() => {
