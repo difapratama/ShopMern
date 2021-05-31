@@ -1,44 +1,40 @@
-const express = require("express");
-const app = express();
+const app = require("./app");
+const dotenv = require("dotenv");
+const cloudinary = require("cloudinary");
 
-const cookieParser = require("cookie-parser");
-const bodyParser = require("body-parser");
-const fileUpload = require("express-fileupload");
-// const dotenv = require('dotenv');
-const path = require("path");
+const connectDatabase = require("./config/database");
 
-const errorMiddleware = require("./middlewares/errors");
+// Handle Uncaught Exception
+process.on("uncaughtException", (err) => {
+  console.log(`ERROR: ${err.stack}`);
+  console.log("Shutting down the server due to uncaught exception");
+  process.exit(1);
+});
 
 // Setting up config file
-if (process.env.NODE_ENV !== "PRODUCTION")
-  require("dotenv").config({ path: "backend/config/config.env" });
-// dotenv.config({ path: 'backend/config/config.env' })
+dotenv.config({ path: "backend/config/config.env" });
 
-app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
-app.use(fileUpload());
+// Connecting to database
+connectDatabase();
 
-// Import all routes
-const products = require("./routes/product");
-const auth = require("./routes/auth");
-const payment = require("./routes/payment");
-const order = require("./routes/order");
+// Setting up cloudinary config
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET_KEY,
+});
 
-app.use("/api/v1", products);
-app.use("/api/v1", auth);
-app.use("/api/v1", payment);
-app.use("/api/v1", order);
+const server = app.listen(process.env.PORT, () => {
+  console.log(
+    `Server started on PORT: ${process.env.PORT} in ${process.env.NODE_ENV} mode.`
+  );
+});
 
-if (process.env.NODE_ENV === "PRODUCTION") {
-  app.use(express.static(path.join(__dirname, "../frontend/build")));
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
+// Handle Unhandle Promise Rejection
+process.on("unhandledRejection", (err) => {
+  console.log(`Error: ${err.stack}`);
+  console.log("Shutting down the server due to Unhandle Promise Rejection");
+  server.close(() => {
+    process.exit(1);
   });
-}
-
-// Middleware to handle errors
-app.use(errorMiddleware);
-
-module.exports = app;
+});
