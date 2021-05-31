@@ -7,6 +7,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
+const helmet = require("helmet");
 
 const errorMiddleware = require("./middlewares/errors");
 
@@ -28,6 +29,28 @@ app.use(
       "block-all-mixed-content": true,
     },
   })
+);
+
+app.use(
+  // [
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      connectSrc: ["'self'", "https://checkout.stripe.com"],
+      frameSrc: ["'self'", "https://checkout.stripe.com"],
+      childSrc: ["'self'", "https://checkout.stripe.com"],
+      scriptSrc: ["'self'", "https://checkout.stripe.com"],
+      styleSrc: [
+        "'self'",
+        "https://fonts.googleapis.com",
+        "https://checkout.stripe.com",
+      ],
+      fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      imgSrc: ["'self'", "https://*.stripe.com", "https://res.cloudinary.com"],
+      baseUri: ["'self'"],
+    },
+  })
+  // ]
 );
 
 // import all routes

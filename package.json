@@ -8,7 +8,7 @@
     "dev": "NODE_ENV=DEVELOPMENT nodemon backend/server.js",
     "prod": "NODE_ENV=PRODUCTION nodemon backend/server.js",
     "seeder": "node backend/utils/seeder",
-    "heroku-postbuild" : "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm run build --prefix frontend"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "author": "Difa Pratama",
   "license": "ISC",
@@ -22,6 +22,7 @@
     "express": "^4.17.1",
     "express-csp-header": "^4.1.0",
     "express-fileupload": "^1.2.1",
+    "helmet": "^4.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.3",
     "nodemailer": "^6.5.0",
