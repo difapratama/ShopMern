@@ -35,7 +35,7 @@ async function run() {
         images: [
           {
             public_id: "products/dsvbpny402gelwugv2le",
-            url: "https://res.cloudinary.com/bookit/image/upload/v1608062030/products/dsvbpny402gelwugv2le.jpg",
+            url: "https://res.cloudinary.com/octavarium/image/upload/v1620677985/Product/sandisk_ultra_ufxuzw.png",
           },
         ],
         category: "Electronics",
@@ -53,7 +53,7 @@ async function run() {
         images: [
           {
             public_id: "products/61oXGZ60GfL_fixco9",
-            url: "https://res.cloudinary.com/bookit/image/upload/v1614877995/products/61oXGZ60GfL_fixco9.jpg",
+            url: "https://res.cloudinary.com/octavarium/image/upload/v1620682176/Product/can_usb_adapter_vzgjio.jpg",
           },
         ],
         category: "Electronics",
@@ -71,7 +71,7 @@ async function run() {
         images: [
           {
             public_id: "products/chairmount_nuubea",
-            url: "https://res.cloudinary.com/bookit/image/upload/v1606231285/products/chairmount_nuubea.jpg",
+            url: "https://res.cloudinary.com/octavarium/image/upload/v1620682321/Product/wall_mount_tv_lqogug.jpg",
           },
         ],
         category: "Electronics",
@@ -89,7 +89,7 @@ async function run() {
         images: [
           {
             public_id: "products/headphones_t2afnb",
-            url: "https://res.cloudinary.com/bookit/image/upload/v1606231281/products/headphones_t2afnb.jpg",
+            url: "https://res.cloudinary.com/octavarium/image/upload/v1620682053/Product/bose_headphone_wqxi73.jpg",
           },
         ],
         category: "Headphones",
@@ -107,7 +107,7 @@ async function run() {
         images: [
           {
             public_id: "products/airpords_e5cqqr",
-            url: "https://res.cloudinary.com/bookit/image/upload/v1606231282/products/airpords_e5cqqr.jpg",
+            url: "https://res.cloudinary.com/octavarium/image/upload/v1620688806/Product/apple_macbook_air_twjvm1.jpg",
           },
         ],
         category: "Electronics",
@@ -125,7 +125,7 @@ async function run() {
         images: [
           {
             public_id: "products/eahhtj1bkn1k9gjgd3hn",
-            url: "https://res.cloudinary.com/bookit/image/upload/v1606233125/products/eahhtj1bkn1k9gjgd3hn.jpg",
+            url: "https://res.cloudinary.com/octavarium/image/upload/v1620688563/Product/cable_boom_qqlboh.jpg",
           },
         ],
         category: "Accessories",
